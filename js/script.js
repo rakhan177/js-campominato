@@ -26,8 +26,11 @@ function controlNumber(arr, num) {
 }
 
 // variabili e array
+var container = document.getElementById('container');
 var livello = 0;
 var arrayRandom = [];
+var arrayUtente = [];
+var numeroUtente;
 
 // chiedo difficoltà all' UTENTE
 var difficolta = prompt('Vuoi giocare facile, medio o difficile');
@@ -77,3 +80,16 @@ if(livello === 3){
 }
 
 //chiedo all' utente di inserire numeri fino a quando non sbaglia!!
+while (!arrayRandom.includes(numeroUtente)) {
+  numeroUtente = Number(prompt('Inserisci un numero da 1 a 100'));
+  // controllo che non scriva cazzate
+  if(isNaN(numeroUtente)){
+    alert('Ti sembra un numero?')
+  }/*eseguo controllo identicità*/else if (controlNumber(arrayUtente, numeroUtente)) {
+    arrayUtente.push(numeroUtente);
+    console.log(arrayUtente);
+  }
+}
+
+// hai perso!!!!!!!!!
+container.style = 'display: flex';
