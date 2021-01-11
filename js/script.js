@@ -43,6 +43,7 @@ var numeroRandom;
 var arrayUtente = [];
 var numeroUtente;
 var difficoltà;
+var limite;
 
 // chiedo difficoltà all' UTENTE
 difficoltà = Number(prompt('Vuoi giocare: facile=1, medio=2 o difficile=3 ?'));
@@ -53,35 +54,24 @@ while(!controlNumberIsNumber(difficoltà, 3)){
   difficoltà = Number(prompt('Vuoi giocare: facile=1, medio=2 o difficile=3 ?'));
   }
 
-// in base alla difficoltà scelta genero arrayRandom differenti
+// in base alla difficoltà scelta stabilisco un limite
 switch(difficoltà){
   case (1):
-  // genero 16 numeri randomici
-  while(arrayRandom.length < 16){
-    numeroRandom = randomNumber(1, 100);
-    if(controlRepeat(arrayRandom, numeroRandom)){
-      arrayRandom.push(numeroRandom);
-    }
-  }
+  limite = 100;
   break;
   case (2):
-  // genero 16 numeri randomici
-  while(arrayRandom.length < 16){
-    numeroRandom = randomNumber(1, 80);
-    if(controlRepeat(arrayRandom, numeroRandom)){
-      arrayRandom.push(numeroRandom);
-    }
-  }
+  limite = 80;
   break;
   case (3):
-  // genero 16 numeri randomici
-  while(arrayRandom.length < 16){
-    numeroRandom = randomNumber(1, 50);
-    if(controlRepeat(arrayRandom, numeroRandom)){
-      arrayRandom.push(numeroRandom);
-    }
+  limite = 50;
+}
+
+// genero array in base al limite imposto dalla difficoltà
+while(arrayRandom.length < 16){
+  numeroRandom = randomNumber(1, limite);
+  if(controlRepeat(arrayRandom, numeroRandom)){
+    arrayRandom.push(numeroRandom);
   }
-  break;
 }
 console.log(arrayRandom);
 
