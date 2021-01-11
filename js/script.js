@@ -21,8 +21,8 @@ function randomNumber(min, max) {
 }
 
 // funzione di controllo identicità numeri
-function controlRepeat(i, num){
-  return (!i.includes(num));
+function controlRepeat(arr, num){
+  return (!arr.includes(num));
 }
 
 // funzione di controllo numeri possibili
@@ -46,7 +46,6 @@ var difficoltà;
 
 // chiedo difficoltà all' UTENTE
 difficoltà = Number(prompt('Vuoi giocare: facile=1, medio=2 o difficile=3 ?'));
-console.log(difficoltà);
 
 // lo obbligo a scrivere un numero corretto
 while(!controlNumberIsNumber(difficoltà, 3)){
