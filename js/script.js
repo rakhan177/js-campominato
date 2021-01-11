@@ -45,6 +45,9 @@ var numeroUtente;
 var difficoltà;
 var limite;
 
+// messaggio di benvenuto
+alert('Pronto/a per giocare a campo minato? Attento a non esplodere!!!')
+
 // chiedo difficoltà all' UTENTE
 difficoltà = Number(prompt('Vuoi giocare: facile=1, medio=2 o difficile=3 ?'));
 
