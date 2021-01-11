@@ -79,18 +79,17 @@ while(arrayRandom.length < 16){
 console.log(arrayRandom);
 
 // chiedere all' utente 84 volte di inserire un numeroRandom
-while(arrayUtente.length < 84 && controlRepeat(arrayRandom, numeroUtente)){
-  numeroUtente = Number(prompt('Inserisci un numero da 1 a 100'));
-  if(controlNumberIsNumber(numeroUtente, 100)){
-    controlRepeat(arrayRandom, numeroUtente);
+while(arrayUtente.length < 5 && controlRepeat(arrayRandom, numeroUtente)){
+  numeroUtente = Number(prompt('Inserisci un numero da 1 a 100.'));
+  if(controlNumberIsNumber(numeroUtente, 100) && controlRepeat(arrayRandom, numeroUtente) && controlRepeat(arrayUtente, numeroUtente)){
     arrayUtente.push(numeroUtente);
   }else{
-    alert('Inserisci un NUMERO INTERO da 1 a 100!');
+    alert('Inserisci un NUMERO INTERO da 1 a 100 non ripetuto!');
   }
 }
 
 // condizioni di vittoria/sconfitta
-if(arrayUtente.length === 84){
+if(arrayUtente.length === 5){
   alert('Incredibbbbbbile....hai guardato la console vero?');
   container.style = 'display: block';
   vittoria.style = 'display: flex';
