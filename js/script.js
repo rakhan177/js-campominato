@@ -98,7 +98,7 @@ while(arrayUtente.length < 84 && controlRepeat(arrayRandom, numeroUtente)){
 
 // condizioni di vittoria/sconfitta
 if(arrayUtente.length === 84){
-  alert('Incredibbbbbbile....hai vinto');
+  alert('Incredibbbbbbile....hai guardato la console vero?');
   container.style = 'display: block';
   vittoria.style = 'display: flex';
 }else{
