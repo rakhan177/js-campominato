@@ -27,7 +27,7 @@ function controlRepeat(i, num){
 
 // funzione di controllo numeri possibili
 function controlNumberIsNumber(num, num1){
-  if(!isNaN(num) && (num >= 1 && num <= num1)){
+  if(!isNaN(num) && (num >= 1 && num <= num1) && num.toString().indexOf('.') === -1){
     return true;
   }
 }
@@ -46,6 +46,7 @@ var difficoltà;
 
 // chiedo difficoltà all' UTENTE
 difficoltà = Number(prompt('Vuoi giocare: facile=1, medio=2 o difficile=3 ?'));
+console.log(difficoltà);
 
 // lo obbligo a scrivere un numero corretto
 while(!controlNumberIsNumber(difficoltà, 3)){
@@ -92,7 +93,7 @@ while(arrayUtente.length < 84 && controlRepeat(arrayRandom, numeroUtente)){
     controlRepeat(arrayRandom, numeroUtente);
     arrayUtente.push(numeroUtente);
   }else{
-    alert('Inserisci un NUMERO da 1 a 100!');
+    alert('Inserisci un NUMERO INTERO da 1 a 100!');
   }
 }
 
