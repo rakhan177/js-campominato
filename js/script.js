@@ -14,82 +14,94 @@ con difficoltà 2 => tra 1 e 50*/
 
 /*----------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-// funzione per numeri randomici
+// funzione genera numero random
 function randomNumber(min, max) {
   var result = Math.floor(Math.random() * (max + 1 - min) + min);
   return result;
 }
 
-// funzione di controllo identicità
-function controlNumber(arr, num) {
-  return (arr.indexOf(num) === -1);
+// funzione di controllo identicità numeri
+function controlRepeat(i, num){
+  return (!i.includes(num));
 }
 
-// variabili e array
+// funzione di controllo numeri possibili
+function controlNumberIsNumber(num, num1){
+  if(!isNaN(num) && (num >= 1 && num <= num1)){
+    return true;
+  }
+}
+
+// definizioni variabili dom
 var container = document.getElementById('container');
-var livello = 0;
+var vittoria = document.getElementById('vittoria');
+var sconfitta = document.getElementById('sconfitta');
+
+// definizione variabii
 var arrayRandom = [];
+var numeroRandom;
 var arrayUtente = [];
 var numeroUtente;
+var difficoltà;
 
 // chiedo difficoltà all' UTENTE
-var difficolta = prompt('Vuoi giocare facile, medio o difficile');
+difficoltà = Number(prompt('Vuoi giocare: facile=1, medio=2 o difficile=3 ?'));
 
-// controllo che non abbia scritto cazzate
-if(difficolta !== 'facile' && difficolta !== 'medio' && difficolta !== 'difficile'){
-  alert('Dai non sei simpatico!');
-}else if(difficolta === 'facile'){
-  livello = 1;
-}else if(difficolta === 'medio'){
-  livello = 2;
-}else if(difficolta === 'difficile'){
-  livello = 3;
-}
+// lo obbligo a scrivere un numero corretto
+while(!controlNumberIsNumber(difficoltà, 3)){
+  alert('Inserisci un numero che corrisponda alla difficoltà di gioco!!!');
+  difficoltà = Number(prompt('Vuoi giocare: facile=1, medio=2 o difficile=3 ?'));
+  }
 
-// in base a livello scelto genero tre array diversi
-if(livello === 3){
-  while (arrayRandom.length < 16) {
-    numeroRandom = randomNumber(1, 50);
-    // controllo che il num generato sia diverso da quelli pushati prima
-    if (controlNumber(arrayRandom, numeroRandom)) {
-      // se è vero pusho
-      arrayRandom.push(numeroRandom);
-    }
-  }
-  console.log(arrayRandom);
-}else if(livello === 2){
-  while (arrayRandom.length < 16) {
-    numeroRandom = randomNumber(1, 80);
-    // controllo che il num generato sia diverso da quelli pushati prima
-    if (controlNumber(arrayRandom, numeroRandom)) {
-      // se è vero pusho
-      arrayRandom.push(numeroRandom);
-    }
-  }
-  console.log(arrayRandom);
-}else{
-  while (arrayRandom.length < 16) {
+// in base alla difficoltà scelta genero arrayRandom differenti
+switch(difficoltà){
+  case (1):
+  // genero 16 numeri randomici
+  while(arrayRandom.length < 16){
     numeroRandom = randomNumber(1, 100);
-    // controllo che il num generato sia diverso da quelli pushati prima
-    if (controlNumber(arrayRandom, numeroRandom)) {
-      // se è vero pusho
+    if(controlRepeat(arrayRandom, numeroRandom)){
       arrayRandom.push(numeroRandom);
     }
   }
-  console.log(arrayRandom);
+  break;
+  case (2):
+  // genero 16 numeri randomici
+  while(arrayRandom.length < 16){
+    numeroRandom = randomNumber(1, 80);
+    if(controlRepeat(arrayRandom, numeroRandom)){
+      arrayRandom.push(numeroRandom);
+    }
+  }
+  break;
+  case (3):
+  // genero 16 numeri randomici
+  while(arrayRandom.length < 16){
+    numeroRandom = randomNumber(1, 50);
+    if(controlRepeat(arrayRandom, numeroRandom)){
+      arrayRandom.push(numeroRandom);
+    }
+  }
+  break;
 }
+console.log(arrayRandom);
 
-//chiedo all' utente di inserire numeri fino a quando non sbaglia!!
-while (!arrayRandom.includes(numeroUtente)) {
+// chiedere all' utente 84 volte di inserire un numeroRandom
+while(arrayUtente.length < 84 && controlRepeat(arrayRandom, numeroUtente)){
   numeroUtente = Number(prompt('Inserisci un numero da 1 a 100'));
-  // controllo che non scriva cazzate
-  if(isNaN(numeroUtente)){
-    alert('Ti sembra un numero?')
-  }/*eseguo controllo identicità*/else if (controlNumber(arrayUtente, numeroUtente)) {
+  if(controlNumberIsNumber(numeroUtente, 100)){
+    controlRepeat(arrayRandom, numeroUtente);
     arrayUtente.push(numeroUtente);
-    console.log(arrayUtente);
+  }else{
+    alert('Inserisci un NUMERO da 1 a 100!');
   }
 }
 
-// hai perso!!!!!!!!!
-container.style = 'display: flex';
+// condizioni di vittoria/sconfitta
+if(arrayUtente.length === 84){
+  alert('Incredibbbbbbile....hai vinto');
+  container.style = 'display: block';
+  vittoria.style = 'display: flex';
+}else{
+  container.style = 'display: block';
+  sconfitta.style = 'display: flex';
+}
